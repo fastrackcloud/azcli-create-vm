@@ -130,6 +130,7 @@ printf "\n\n"
 
 echo "########## The server is created successfully and you can access at http://$jenkinspip:8080 ##########"
 echo "########## You are back to your Laptop ##########"
+echo "########## This last step of SSH and installing  Azure CLI & SSH pass can be avoided, if you dd the insructions to cloud-init ##########'
 
 
 
