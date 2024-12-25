@@ -30,3 +30,29 @@ az vm create \
   --custom-data cloud-init-jenkins.txt \
   --size Standard_B2s \
   --storage-sku Standard_LRS
+
+# Open port 8080
+az vm open-port \
+--resource-group jenkins-rg \
+--name jenkins-vm \
+--port 8080 \
+--priority 1010
+
+# Populate the VM Public IP to a variable $jenkinspip
+jenkinspip=$(az vm show \
+--resource-group jenkins-rg \
+--name jenkins-vm -d \
+--query [publicIps] --output tsv | tr -d '[:space:]')
+
+# Add the host key in the ~/.ssh/known_hosts file 
+ssh-keyscan -H $jenkinspip >> ~/.ssh/known_hosts
+
+# SSH into the Jenkins VM
+ssh -i ./jenkins-rg azureuser@$jenkinspip
+
+# Install Azure CLI & SSH pass
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+sudo apt install sshpass -y
+
+
+
