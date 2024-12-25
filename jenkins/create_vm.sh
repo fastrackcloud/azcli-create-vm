@@ -90,7 +90,7 @@ echo "########## Added Host key ##########"
 
 printf "\n\n"
 
-echo "########## Waiting for 4 minutes to allo instllation of Jenkins to complete ##########
+echo "########## Waiting for 4 minutes to install the software defined in cloud-init ##########"
 sleep 240
 
 printf "\n\n"
