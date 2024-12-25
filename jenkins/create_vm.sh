@@ -1,6 +1,8 @@
 # Create Jenkins installation script into a file: cloud-init-jenkins.txt
 printf "\n\n"
 echo "########## Starting the job ##########"
+echo "########## Version 1.0 ##########"
+echo "########## Created by Raghavendra ##########"
 printf "\n\n"
 
 mkdir jenkins-server
@@ -19,6 +21,7 @@ EOF
 printf "\n\n"
 
 echo "########## Created Jenkins installation script ##########"
+echo "########## Now creating SSH Keys ##########"
 
 printf "\n\n"
 
@@ -30,6 +33,7 @@ chmod 600 jenkins-rg
 printf "\n\n"
 
 echo "########## Created SSH key pair ##########"
+echo "########## Now creating Resource group ##########"
 
 printf "\n\n"
 
@@ -39,6 +43,7 @@ az group create --name jenkins-rg --location eastus
 printf "\n\n"
 
 echo "########## Created Resource group ##########"
+echo "########## Now creating the VM ##########"
 
 printf "\n\n"
 
@@ -57,6 +62,7 @@ az vm create \
 printf "\n\n"
 
 echo "########## Created Jenkins vM ##########"
+echo "########## Now opening jenkins Port 8080 ##########"
 
 printf "\n\n"
 
@@ -70,6 +76,7 @@ az vm open-port \
 printf "\n\n"
 
 echo "########## Port 8080 opened ##########"
+echo "########## Now obtaining the Public IP of the VM ##########"
 
 printf "\n\n"
 
@@ -81,7 +88,8 @@ jenkinspip=$(az vm show \
 
 printf "\n\n"
 
-echo "########## jenkinspip populated ##########"
+echo "########## Obtained the Public IP of the VM: $jenkinspip ##########"
+echo "########## Populating SSH known_hosts file with the VM host key to ensure a non-interactive login ##########"
 
 printf "\n\n"
 
@@ -95,7 +103,18 @@ echo "########## Added Host key ##########"
 printf "\n\n"
 
 echo "########## Waiting for 4 minutes to install the software defined in cloud-init ##########"
-sleep 240
+
+# Countdown timer
+for ((i=240; i>0; i--)); do
+    printf "\rTime remaining: %3d seconds" "$i"
+    sleep 1
+done
+echo -e "\nTimer completed!"
+
+
+printf "\n\n"
+
+echo "########## Connecting to the Jenkins VM and installing AZ CLI and SSHPass ##########"
 
 printf "\n\n"
 
@@ -109,7 +128,9 @@ EOF
 
 printf "\n\n"
 
-echo "########## The server is created successfully ad you can access at http://$jenkinspip:8080 ##########"
+echo "########## The server is created successfully and you can access at http://$jenkinspip:8080 ##########"
+echo "########## You are back to your Laptop ##########"
+
 
 
 
