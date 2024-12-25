@@ -1,4 +1,8 @@
 # Create Jenkins installation script into a file: cloud-init-jenkins.txt
+printf "\n\n"
+echo "########## Starting the job ##########"
+printf "\n\n"
+
 mkdir jenkins-server
 cd jenkins-server
 cat <<EOF > cloud-init-jenkins.txt
