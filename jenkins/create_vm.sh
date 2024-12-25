@@ -13,7 +13,8 @@ runcmd:
 EOF
 
 # Create SSH key pair
-ssh-keygen -t rsa -b 2048 -f ./jenkins-rg
+ssh-keygen -t rsa -b 2048 -f ./jenkins-rg -N ""
+
 chmod 600 jenkins-rg
 
 # Create resource group
