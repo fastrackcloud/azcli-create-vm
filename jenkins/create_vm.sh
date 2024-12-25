@@ -132,6 +132,11 @@ echo "########## The server is created successfully and you can access at http:/
 echo "########## You are back to your Laptop ##########"
 echo "########## This last step of SSH and installing  Azure CLI & SSH pass can be avoided, if you dd the insructions to cloud-init ##########'
 
+printf "\n\n"
+
+echo "########## CLEANING UP THE FILES AND FOLDERS THAT ARE CREATED FOR THIS OPERATION FROM YOUR LAPTOP##########"
+rm -rf *
+clear
 
 
 
