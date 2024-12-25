@@ -27,8 +27,8 @@ printf "\n\n"
 
 
 # Create SSH key pair
-ssh-keygen -t rsa -b 2048 -f ./jenkins-rg -N ""
-chmod 600 jenkins-rg
+ssh-keygen -t rsa -b 2048 -f ./jenkins-key -N ""
+chmod 600 jenkins-key
 
 printf "\n\n"
 
@@ -120,7 +120,7 @@ printf "\n\n"
 
 # SSH into the Jenkins VM
 # Install Azure CLI & SSH pass
-ssh -i ./jenkins-rg azureuser@$jenkinspip <<EOF
+ssh -i ./jenkins-key azureuser@$jenkinspip <<EOF
 sudo su -
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 apt install sshpass -y
