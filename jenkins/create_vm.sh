@@ -11,14 +11,16 @@ runcmd:
   - sudo apt-get update && sudo apt-get install jenkins -y
   - sudo service jenkins restart
 EOF
+echo "Jenkins installation script"
 
 # Create SSH key pair
 ssh-keygen -t rsa -b 2048 -f ./jenkins-rg -N ""
-
 chmod 600 jenkins-rg
+echo "Created SSH key pair"
 
 # Create resource group
 az group create --name jenkins-rg --location eastus
+echo "Resource group created"
 
 # Create the VM
 az vm create \
@@ -31,6 +33,7 @@ az vm create \
   --custom-data cloud-init-jenkins.txt \
   --size Standard_B2s \
   --storage-sku Standard_LRS
+echo "Jenkins vM created"
 
 # Open port 8080
 az vm open-port \
@@ -38,15 +41,18 @@ az vm open-port \
 --name jenkins-vm \
 --port 8080 \
 --priority 1010
+echo "Port 8080 opened"
 
 # Populate the VM Public IP to a variable $jenkinspip
 jenkinspip=$(az vm show \
 --resource-group jenkins-rg \
 --name jenkins-vm -d \
 --query [publicIps] --output tsv | tr -d '[:space:]')
+echo "jeninspip populated"
 
 # Add the host key in the ~/.ssh/known_hosts file 
 ssh-keyscan -H $jenkinspip >> ~/.ssh/known_hosts
+echo "Host key added"
 
 # SSH into the Jenkins VM
 # Install Azure CLI & SSH pass
@@ -54,6 +60,7 @@ ssh -i ./jenkins-rg azureuser@$jenkinspip <<EOF
 sudo su -
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 apt install sshpass -y
+echo "AZ CLI & SSHPass installed"
 EOF
 
 
