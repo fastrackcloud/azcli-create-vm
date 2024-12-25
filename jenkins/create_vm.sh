@@ -12,27 +12,31 @@ runcmd:
   - sudo service jenkins restart
 EOF
 
-# Add three blank lines
-printf "\n\n\n"
+printf "\n\n"
 
 echo "########## Created Jenkins installation script ##########"
+
+printf "\n\n"
+
 
 # Create SSH key pair
 ssh-keygen -t rsa -b 2048 -f ./jenkins-rg -N ""
 chmod 600 jenkins-rg
 
-# Add three blank lines
-printf "\n\n\n"
+printf "\n\n"
 
 echo "########## Created SSH key pair ##########"
+
+printf "\n\n"
 
 # Create resource group
 az group create --name jenkins-rg --location eastus
 
-# Add three blank lines
-printf "\n\n\n"
+printf "\n\n"
 
 echo "########## Created Resource group ##########"
+
+printf "\n\n"
 
 # Create the VM
 az vm create \
@@ -46,10 +50,11 @@ az vm create \
   --size Standard_B2s \
   --storage-sku Standard_LRS
 
-# Add three blank lines
-printf "\n\n\n"
+printf "\n\n"
 
 echo "########## Created Jenkins vM ##########"
+
+printf "\n\n"
 
 # Open port 8080
 az vm open-port \
@@ -58,10 +63,11 @@ az vm open-port \
 --port 8080 \
 --priority 1010
 
-# Add three blank lines
-printf "\n\n\n"
+printf "\n\n"
 
 echo "########## Port 8080 opened ##########"
+
+printf "\n\n"
 
 # Populate the VM Public IP to a variable $jenkinspip
 jenkinspip=$(az vm show \
@@ -69,21 +75,25 @@ jenkinspip=$(az vm show \
 --name jenkins-vm -d \
 --query [publicIps] --output tsv | tr -d '[:space:]')
 
-# Add three blank lines
-printf "\n\n\n"
+printf "\n\n"
 
 echo "########## jenkinspip populated ##########"
+
+printf "\n\n"
 
 # Add the host key in the ~/.ssh/known_hosts file 
 ssh-keyscan -H $jenkinspip >> ~/.ssh/known_hosts
 
-# Add three blank lines
-printf "\n\n\n"
+printf "\n\n"
 
 echo "########## Added Host key ##########"
 
+printf "\n\n"
+
 echo "########## Waiting for 4 minutes to allo instllation of Jenkins to complete ##########
 sleep 240
+
+printf "\n\n"
 
 # SSH into the Jenkins VM
 # Install Azure CLI & SSH pass
@@ -92,12 +102,10 @@ sudo su -
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 apt install sshpass -y
 
-# Add three blank lines
-printf "\n\n\n"
+printf "\n\n"
 echo "########## AZ CLI & SSHPass installed ##########"
 
-# Add three blank lines
-printf "\n\n\n"
+printf "\n\n"
 
 echo "########## The server is created successfully ad you can access at http://$jenkinspip:8080 ##########"
 EOF
