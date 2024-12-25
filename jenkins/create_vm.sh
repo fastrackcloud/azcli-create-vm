@@ -52,8 +52,9 @@ ssh-keyscan -H $jenkinspip >> ~/.ssh/known_hosts
 ssh -i ./jenkins-rg azureuser@$jenkinspip
 
 # Install Azure CLI & SSH pass
+sudo su -
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-sudo apt install sshpass -y
+apt install sshpass -y
 
 
 
