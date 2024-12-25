@@ -1,1 +1,0 @@
-# azcli-create-vm
