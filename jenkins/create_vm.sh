@@ -49,12 +49,12 @@ jenkinspip=$(az vm show \
 ssh-keyscan -H $jenkinspip >> ~/.ssh/known_hosts
 
 # SSH into the Jenkins VM
-ssh -i ./jenkins-rg azureuser@$jenkinspip
-
 # Install Azure CLI & SSH pass
+ssh -i ./jenkins-rg azureuser@$jenkinspip <<EOF
 sudo su -
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 apt install sshpass -y
+EOF
 
 
 
