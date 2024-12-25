@@ -107,6 +107,16 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 apt install sshpass -y
 EOF
 
+exit
+printf "\n\n"
+
+echo "########## Disconnected from Jenkins VM ##########"
+
+printf "\n\n"
+
+echo ########## Cleaning your Home Directory ##########"
+printf "\n\n"
+pwd
 echo "########## The server is created successfully ad you can access at http://$jenkinspip:8080 ##########"
 
 
