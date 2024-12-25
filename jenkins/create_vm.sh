@@ -53,7 +53,7 @@ az vm create \
   --name jenkins-vm \
   --image canonical:ubuntu-24_04-lts:server:24.04.202411030 \
   --admin-username "azureuser" \
-  --ssh-key-value ./jenkins-rg.pub \
+  --ssh-key-value ./jenkins-key.pub \
   --public-ip-sku Standard \
   --custom-data cloud-init-jenkins.txt \
   --size Standard_B2s \
