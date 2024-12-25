@@ -101,14 +101,9 @@ ssh -i ./jenkins-rg azureuser@$jenkinspip <<EOF
 sudo su -
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 apt install sshpass -y
-
-printf "\n\n"
-echo "########## AZ CLI & SSHPass installed ##########"
-
-printf "\n\n"
+EOF
 
 echo "########## The server is created successfully ad you can access at http://$jenkinspip:8080 ##########"
-EOF
 
 
 
