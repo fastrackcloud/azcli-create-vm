@@ -50,7 +50,6 @@ github-api
 github-branch-source
 github
 gradle
-gson
 instance-identity
 ionicons-api
 jackson2-api
