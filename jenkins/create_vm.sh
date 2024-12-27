@@ -126,7 +126,7 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 apt install sshpass -y
 add-apt-repository ppa:git-core/ppa -y
 apt update
-apt install git
+apt install git -y
 EOF
 
 printf "\n\n"
