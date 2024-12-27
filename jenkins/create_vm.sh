@@ -114,7 +114,7 @@ echo -e "\nTimer completed!"
 
 printf "\n\n"
 
-echo "########## Connecting to the Jenkins VM and installing AZ CLI and SSHPass ##########"
+echo "########## Connecting to the Jenkins VM and installing AZ CLI, SSHPass, Git and adding Jenkins to sudoers ##########"
 
 printf "\n\n"
 
@@ -127,6 +127,7 @@ apt install sshpass -y
 add-apt-repository ppa:git-core/ppa -y
 apt update
 apt install git -y
+echo "jenkinsadmin ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
 EOF
 
 printf "\n\n"
