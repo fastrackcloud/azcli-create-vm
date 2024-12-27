@@ -4,13 +4,13 @@
 # Part-1
 # Get the Public IP of the VM created
 pip=$(az network public-ip show \
---resource-group $resourceGroup \
---name $ipName --query "ipAddress" \
+--resource-group $vm_resourcegroup \
+--name $vm_pip --query "ipAddress" \
 --output tsv | tr -d '[:space:]')
 
 # Connect to the VM using SSHPASS and install Apache, Git
 # Then download the websit code from GitHub andexecute the code
-sshpass -p $adminPassword ssh -o StrictHostKeyChecking=no $adminUsername@$pip << EOF
+sshpass -p $vm_adminpassword ssh -o StrictHostKeyChecking=no $vm_adminusername@$pip << EOF
 sudo apt-get update
 sudo apt-get install apache2 php git -y
 sudo systemctl enable apache2
