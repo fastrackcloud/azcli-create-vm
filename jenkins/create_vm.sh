@@ -127,7 +127,6 @@ apt install sshpass -y
 add-apt-repository ppa:git-core/ppa -y
 apt update
 apt install git -y
-echo "jenkinsadmin ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
 EOF
 
 printf "\n\n"
