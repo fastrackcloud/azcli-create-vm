@@ -124,6 +124,9 @@ ssh -i ./jenkins-key azureuser@$jenkinspip <<EOF
 sudo su -
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 apt install sshpass -y
+add-apt-repository ppa:git-core/ppa -y
+apt update
+apt install git
 EOF
 
 printf "\n\n"
