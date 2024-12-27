@@ -56,14 +56,17 @@ packages:
   - php
   - git
 runcmd:
+  - apt-get update
+  - apt-get install apache2 php git -y
   - systemctl enable apache2
   - systemctl start apache2
-  - git clone https://github.com/fastrackcloud/website-automation.git /tmp/website-automation
+  - TOKEN=$(az keyvault secret show --name GitHubToken --vault-name <KeyVaultName> --query value -o tsv)
+  - git clone https://$TOKEN@github.com/<username>/<repository>.git /tmp/website-automation
   - cp /tmp/website-automation/* /var/www/html/
   - mv /var/www/html/htaccess /var/www/html/.htaccess
   - sed -i '19iDirectoryIndex index.php /html/index.php' /etc/apache2/sites-available/000-default.conf
   - systemctl restart apache2
-EOF
+
 
 # Create the VM with Cloud-Init
 az vm create \
