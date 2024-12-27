@@ -11,6 +11,7 @@ devOpsResourceGroup="DevOpsResourceGroup"
 
 # Step 1: Create a Resource Group for Key Vault (if not already created)
 az group create --name $resourceGroup --location $location
+az group create --name $devOpsResourceGroup --location $location 
 
 # Step 2: Create Key Vault
 az keyvault create \
