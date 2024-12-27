@@ -5,7 +5,7 @@ resourceGroup="CyberSecResourceGroup"
 location="eastus"
 keyVaultName="MyKeyVault"
 secretName="GitHubToken"
-secretValue="<your_github_token>"  # Replace with your GitHub token
+secretValue="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"  # Replace with your GitHub token
 devOpsVmName="MyVM"
 devOpsResourceGroup="DevOpsResourceGroup"
 
