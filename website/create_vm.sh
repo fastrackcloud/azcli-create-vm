@@ -136,4 +136,9 @@ az vm create \
   --authentication-type password \
   --os-disk-size-gb 30
 
+export vm_pip=$ipName
+export vm_resourcegroup=$resourceGroup
+export vm_adminpassword=$adminPassword
+export vm_adminusername=$adminUsername
+
 echo "Virtual Machine '$vmName' created."
