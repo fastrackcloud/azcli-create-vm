@@ -2,7 +2,7 @@
 ```bash
 #!/bin/bash
 
-# Step 1: Create Post-Setup Cloud-Init File
+# Create Post-Setup Cloud-Init File
 cat <<EOF > post-setup-cloud-init.txt
 #cloud-config
 runcmd:
@@ -17,11 +17,3 @@ runcmd:
   - echo "Restarting Apache..."
   - systemctl restart apache2
 EOF
-
-# Step 2: Apply the Custom Script Extension
-az vm extension set \
-  --resource-group $vmResourceGroup \
-  --vm-name $vmName \
-  --name CustomScript \
-  --publisher Microsoft.Azure.Extensions \
-  --settings '{"fileUris": ["<URL_TO_POST_SETUP_CLOUD_INIT>"], "commandToExecute": "cloud-init apply /path/to/post-setup-cloud-init.txt"}'
