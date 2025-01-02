@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Set variables
-SUBSCRIPTION_ID="your-subscription-id"
+export SUBSCRIPTION_ID=$(az account show --query "id" --output tsv)
+# export subscriptionId=$(az account show --query "id" --output tsv | tr -d '\r\n')
 SP_NAME="jenkins-sp"
 
 # Create Service Principal and parse the output
